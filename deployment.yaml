@@ -12,6 +12,8 @@ spec:
       labels:
         app: nginx
     spec:
+      securityContext:
+        runAsNonRoot: true
       containers:
         - name: nginx
           image: ghcr.io/szlabs/nginx:latest
@@ -20,7 +22,7 @@ spec:
             capabilities:
                 drop:
                 - ALL
-            runAsNonRoot: true
+            runAsUser: 1000
             seccompProfile:
                 type: RuntimeDefault
           ports:
